@@ -2,10 +2,10 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cors = require('cors');
-var bodyPaser = require('body-paser');
+var bodyPaser = require('body-parser');
 
 var corsOptions = {
-  origin: 'http://localhost:8081',
+  origin: 'http://localhost:4200',
 };
 
 const app = express();
@@ -27,7 +27,7 @@ db.sequelize.sync();
 const bookRoutes = require('./routes/book.routes');
 
 //API routes
-app.use('/api', bookRoutes);
+app.use('/api/books', bookRoutes);
 
 const port = process.env.PORT || 8000;
 
@@ -41,10 +41,6 @@ app.use((req, res, next) => {
 });
 
 //Base route
-app.get('/', (req, res, next) => {
-  res.send('Invalid endpoint');
-});
-
 app.get('/', (req, res, next) => {
   res.send('Invalid endpoint');
 });

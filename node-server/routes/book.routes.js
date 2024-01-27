@@ -1,10 +1,9 @@
 const express = require('express');
-const app = express();
 
 const bookRoute = express.Router();
 let Book = require('../models/book');
 
-bookRoute.route('/books').post((req, res, next) => {
+bookRoute.route('/').post((req, res, next) => {
   Book.create(req.body, (error, data) => {
     if (error) {
       return next(error);
@@ -14,7 +13,7 @@ bookRoute.route('/books').post((req, res, next) => {
   });
 });
 
-bookRoute.route('/books').get((req, res, next) => {
+bookRoute.route('/').get((req, res, next) => {
   Book.find((error, data) => {
     if (error) {
       return next(error);
@@ -24,7 +23,7 @@ bookRoute.route('/books').get((req, res, next) => {
   });
 });
 
-bookRoute.route('/books/:id').get((req, res, next) => {
+bookRoute.route('/:id').get((req, res, next) => {
   Book.findByPk(req.params.id, (error, data) => {
     if (error) {
       return next(error);
@@ -34,7 +33,7 @@ bookRoute.route('/books/:id').get((req, res, next) => {
   });
 });
 
-bookRoute.route('/books/:id').put((req, res, next) => {
+bookRoute.route('/:id').put((req, res, next) => {
   Book.findByIdAndUpdate(req.params.id, { $set: req.body }, (error, data) => {
     if (error) {
       console.log(error);
@@ -46,7 +45,7 @@ bookRoute.route('/books/:id').put((req, res, next) => {
   });
 });
 
-bookRoute.route('/books/:id').delete((req, res, next) => {
+bookRoute.route('/:id').delete((req, res, next) => {
   Book.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);

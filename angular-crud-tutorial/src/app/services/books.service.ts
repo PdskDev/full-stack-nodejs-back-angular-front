@@ -17,9 +17,9 @@ export class BooksService {
 
   constructor(private httpClient: HttpClient) {}
 
-  addBook(book: Book): Observable<any> {
+  addBook(book: any): Observable<any> {
     return this.httpClient
-      .post(this.REST_API_URL, book)
+      .post(this.REST_API_URL, book, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
   }
 
@@ -38,7 +38,7 @@ export class BooksService {
       );
   }
 
-  updateBook(id: any, book: Book): Observable<any> {
+  updateBook(id: any, book: any): Observable<any> {
     return this.httpClient
       .put(`${this.REST_API_URL}/${id}`, book, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
