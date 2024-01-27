@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -15,7 +16,13 @@ import { NgModule } from '@angular/core';
     BookDetailsComponent,
     BooksListComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
