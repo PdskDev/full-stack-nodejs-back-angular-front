@@ -44,6 +44,12 @@ export class BooksService {
       .pipe(catchError(this.handleError));
   }
 
+  deleteBook(id: any): Observable<any> {
+    return this.httpClient
+      .delete(`${this.REST_API_URL}/${id}`, { headers: this.httpHeaders })
+      .pipe(catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
