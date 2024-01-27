@@ -38,6 +38,12 @@ export class BooksService {
       );
   }
 
+  updateBook(id: any, book: Book): Observable<any> {
+    return this.httpClient
+      .put(`${this.REST_API_URL}/${id}`, book, { headers: this.httpHeaders })
+      .pipe(catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
